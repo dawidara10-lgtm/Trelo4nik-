@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#090914">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Trelo4nik">
+  <link rel="manifest" href="manifest.webmanifest">
+  <title>Trelo4nik</title>
+  <style>
+    :root{color-scheme:dark;--bg:#090914;--panel:rgba(29,25,49,.72);--line:rgba(255,255,255,.12);--muted:#aaa5c1;--pink:#ff547e;--blue:#559cff;--purple:#a56bff}
+    *{box-sizing:border-box} body{margin:0;background:radial-gradient(ellipse at 5% 0%,#3a1737 0,transparent 38%),radial-gradient(ellipse at 100% 25%,#142c62 0,transparent 42%),var(--bg);color:#fff;font:16px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;min-height:100vh}
+    .app{max-width:650px;margin:auto;padding:env(safe-area-inset-top) 16px calc(18px + env(safe-area-inset-bottom))}
+    header{display:flex;align-items:center;justify-content:space-between;padding:20px 2px 18px}.brand{font-size:27px;font-weight:800;letter-spacing:-1px}.brand span{background:linear-gradient(100deg,var(--pink),var(--blue),var(--purple));background-clip:text;color:transparent}
+    .pill{border:1px solid #7c56a8;background:#2c1c45aa;border-radius:99px;padding:7px 10px;color:#d9c6ff;font-size:10px;letter-spacing:1px}
+    .glass{background:var(--panel);border:1px solid var(--line);box-shadow:0 12px 40px #0005,inset 0 1px #ffffff12;backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border-radius:23px}
+    .welcome{padding:18px;margin-bottom:16px}.welcome h1{font-size:22px;margin:0 0 6px}.muted{color:var(--muted);font-size:13px;line-height:1.45}
+    .toolbar{display:flex;gap:8px;margin:14px 0}.tab{flex:1;border:1px solid var(--line);border-radius:14px;padding:11px 5px;background:#ffffff09;color:#c9c3dc;font-weight:600}.tab.active{background:linear-gradient(110deg,#8b315a88,#394f9c88);color:#fff;border-color:#a17be0}
+    .section-title{font-size:13px;color:#bdb6d1;margin:18px 4px 10px;text-transform:uppercase;letter-spacing:1.3px}
+    .chat{display:flex;align-items:center;gap:12px;padding:13px;margin-bottom:9px;cursor:pointer}.avatar{width:45px;height:45px;border-radius:16px;display:grid;place-items:center;font-weight:800;background:linear-gradient(140deg,#a52e61,#3c4d9c)}.chat:nth-of-type(2) .avatar{background:linear-gradient(140deg,#315fa9,#7043a4)}.chat:nth-of-type(3) .avatar{background:linear-gradient(140deg,#843b9b,#c34e6a)}.chat-main{min-width:0;flex:1}.chat-name{font-weight:700;margin-bottom:4px}.preview{font-size:13px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.time{font-size:11px;color:#b9a9d5;align-self:flex-start}
+    .composer{position:sticky;bottom:10px;margin-top:18px;padding:10px;display:flex;gap:8px;align-items:center;background:#171529ed}.composer input{min-width:0;flex:1;border:0;outline:0;color:#fff;background:transparent;font:15px inherit}.iconbtn,.send{border:0;border-radius:14px;width:42px;height:42px;color:#fff;background:linear-gradient(140deg,#7d315f,#354f9d);font-size:18px}.send{background:linear-gradient(120deg,#b23d70,#4b64c7);font-size:15px;font-weight:700}
+    .note{margin:14px 4px;font-size:11px;color:#8f89a7;line-height:1.45}.toast{position:fixed;left:50%;bottom:calc(82px + env(safe-area-inset-bottom));transform:translateX(-50%);background:#29213d;border:1px solid #8b70ba;padding:10px 15px;border-radius:14px;font-size:13px;display:none;max-width:90%;text-align:center}
+    .chatview{display:none;padding:15px;margin-top:10px}.chatview.show{display:block}.bubble{padding:12px 14px;border-radius:17px;margin:10px 0;max-width:85%;font-size:14px;line-height:1.4;background:#ffffff12}.bubble.mine{margin-left:auto;background:linear-gradient(120deg,#78365d99,#354e9a99);border:1px solid #ffffff20}.back{background:none;border:0;color:#c7b5ff;font-size:14px;padding:0 0 12px}
+    @media(prefers-reduced-motion:no-preference){.glass{animation:rise .45s ease both}@keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}}
+  </style>
+</head>
+<body>
+<div class="app">
+  <header><div class="brand"><span>Trelo4nik</span></div><div class="pill">ULTRA GLASS</div></header>
+  <section class="welcome glass"><h1>Твой новый ритм общения</h1><div class="muted">Dark glass · Digital Pulse · Balanced motion</div></section>
+  <div id="home">
+    <div class="toolbar"><button class="tab active">Чаты</button><button class="tab" id="voiceTab">Voice Studio</button><button class="tab" id="settingsTab">Настройки</button></div>
+    <div class="section-title">Недавние сообщения</div>
+    <div class="chat glass" data-name="Алексей"><div class="avatar">А</div><div class="chat-main"><div class="chat-name">Алексей</div><div class="preview">Привет! Как тебе новый Trelo4nik?</div></div><div class="time">20:45</div></div>
+    <div class="chat glass" data-name="Друзья"><div class="avatar">Д</div><div class="chat-main"><div class="chat-name">Друзья</div><div class="preview">Обсуждаем планы на выходные</div></div><div class="time">19:32</div></div>
+    <div class="chat glass" data-name="Избранное"><div class="avatar">★</div><div class="chat-main"><div class="chat-name">Избранное</div><div class="preview">Сохраняй важные заметки здесь</div></div><div class="time">Вчера</div></div>
+    <div class="note">Демонстрационный интерфейс. Сообщения пока локальные — подключение к аккаунту Telegram ещё не настроено.</div>
+  </div>
+  <section id="chatview" class="chatview glass">
+    <button class="back" id="back">← Все чаты</button><h2 id="chatTitle" style="margin:0 0 12px"></h2>
+    <div id="messages"><div class="bubble">Добро пожаловать в Trelo4nik ✨</div><div class="bubble mine">Проверяю Ultra Glass!</div></div>
+  </section>
+  <section id="voice" class="glass" style="display:none;padding:16px;margin-top:12px">
+    <h2 style="margin:0 0 7px">Voice Studio</h2><p class="muted">Записывай голосовые или диктуй текст. Доступ к микрофону запрашивается только после нажатия.</p>
+    <button class="tab active" id="record" style="width:100%;margin:8px 0">● Начать запись голосового</button>
+    <button class="tab" id="dictate" style="width:100%">〰 Диктовать текст</button>
+    <p id="voiceStatus" class="muted">Готов к работе</p><audio id="playback" controls style="width:100%;display:none"></audio>
+    <textarea id="dictation" placeholder="Распознанный текст появится здесь…" style="width:100%;min-height:85px;background:#ffffff0d;border:1px solid var(--line);border-radius:14px;color:white;padding:12px"></textarea>
+  </section>
+  <section id="settings" class="glass" style="display:none;padding:16px;margin-top:12px">
+    <h2 style="margin:0 0 10px">Настройки</h2>
+    <p class="muted">Звуковой профиль: Digital Pulse</p><label><input type="checkbox" id="soundToggle" checked> Звуки интерфейса</label><br><br>
+    <label><input type="checkbox" id="motionToggle" checked> Анимации Balanced</label>
+    <p class="muted">В этой демоверсии нет отправки данных в Telegram.</p>
+  </section>
+  <div class="composer glass"><button class="iconbtn" id="mic" aria-label="Голосовой ввод">♫</button><input id="message" placeholder="Сообщение…"><button class="send" id="send">➤</button></div>
+</div>
+<div class="toast" id="toast"></div>
+<script>
+const $=id=>document.getElementById(id);let soundOn=true,recorder=null,chunks=[],recording=false;
+function toast(t){$('toast').textContent=t;$('toast').style.display='block';setTimeout(()=>$('toast').style.display='none',2400)}
+function pulse(type='send'){if(!soundOn)return;try{const c=new(window.AudioContext||window.webkitAudioContext)(),o=c.createOscillator(),g=c.createGain();o.type='sine';o.frequency.setValueAtTime(type==='send'?660:520,c.currentTime);o.frequency.exponentialRampToValueAtTime(type==='send'?920:390,c.currentTime+.085);g.gain.setValueAtTime(.0001,c.currentTime);g.gain.exponentialRampToValueAtTime(.055,c.currentTime+.012);g.gain.exponentialRampToValueAtTime(.0001,c.currentTime+.14);o.connect(g);g.connect(c.destination);o.start();o.stop(c.currentTime+.15);o.onended=()=>c.close()}catch(e){}}
+function showPanel(name){$('home').style.display=name==='home'?'block':'none';$('chatview').classList.remove('show');$('voice').style.display=name==='voice'?'block':'none';$('settings').style.display=name==='settings'?'block':'none';document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'))}
+document.querySelectorAll('.chat').forEach(el=>el.addEventListener('click',()=>{$('home').style.display='none';$('chatview').classList.add('show');$('chatTitle').textContent=el.dataset.name;pulse('receive')}));
+$('back').onclick=()=>{$('chatview').classList.remove('show');$('home').style.display='block'};
+$('voiceTab').onclick=()=>showPanel('voice');$('settingsTab').onclick=()=>showPanel('settings');
+$('send').onclick=()=>{const v=$('message').value.trim();if(!v){toast('Напиши сообщение');return}if(!$('chatview').classList.contains('show')){toast('Сначала открой чат');return}const b=document.createElement('div');b.className='bubble mine';b.textContent=v;$('messages').appendChild(b);$('message').value='';pulse('send')};
+$('message').addEventListener('keydown',e=>{if(e.key==='Enter')$('send').click()});
+$('mic').onclick=()=>$('voiceTab').click();
+$('soundToggle').onchange=e=>soundOn=e.target.checked;
+$('motionToggle').onchange=e=>document.body.style.setProperty('--motion',e.target.checked?'1':'0');
+$('record').onclick=async()=>{if(recording){recorder.stop();return}try{const stream=await navigator.mediaDevices.getUserMedia({audio:true});recorder=new MediaRecorder(stream);chunks=[];recorder.ondataavailable=e=>chunks.push(e.data);recorder.onstop=()=>{const blob=new Blob(chunks,{type:recorder.mimeType||'audio/webm'});$('playback').src=URL.createObjectURL(blob);$('playback').style.display='block';$('voiceStatus').textContent='Запись готова для прослушивания (локально).';stream.getTracks().forEach(t=>t.stop());$('record').textContent='● Начать запись голосового';recording=false};recorder.start();recording=true;$('record').textContent='■ Остановить запись';$('voiceStatus').textContent='Идёт запись…';}catch(e){toast('Не удалось открыть микрофон. Проверь разрешение Safari и HTTPS.')}};
+$('dictate').onclick=()=>{const SR=window.SpeechRecognition||window.webkitSpeechRecognition;if(!SR){toast('Диктовка не поддерживается этим браузером. Используй диктовку iOS на клавиатуре.');return}const r=new SR();r.lang='ru-RU';r.interimResults=true;r.onresult=e=>{let s='';for(let i=e.resultIndex;i<e.results.length;i++)s+=e.results[i][0].transcript;$('dictation').value=s};r.onerror=()=>toast('Не удалось распознать речь');r.start();$('voiceStatus').textContent='Слушаю…'};
+if('serviceWorker'in navigator&&location.protocol.startsWith('http'))navigator.serviceWorker.register('./sw.js').catch(()=>{});
+</script>
+</body></html>
